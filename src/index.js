@@ -15,59 +15,70 @@ logger.info(`%s: initializing ${MODULE_ID}`);
 // [2] defining the express app
 const app = express();
 
-/**
- * [5] Connect to mongoDB
- * connect to db
- */
+const appRouting = () => {
+  /**
+   * Call routes
+   */
+  app.use(config.apiRoot, require("./routers"));
 
-(async function() {
-  try {
-    await new MongoConnector(
-      config.dbHost,
-      config.dbUser,
-      config.dbPass
-    ).connect();
-    logger.info(`%s: ready ${MODULE_ID}. connect db successfully!`);
-  } catch (error) {
-    logger.error(
-      `%s: ready ${MODULE_ID}. An error occurred while connecting to DB!`
-    );
-    throw new Error(err);
-  }
-})();
-
-/**
- * [3] adding middleware
- * adding Helmet to enhance your API's security
- * using bodyParser to parse JSON bodies into JS objects
- * enabling CORS for all requests
- * enabling morgan to log HTTP requests
- */
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(helmet());
-app.use(bodyParser.json());
-app.use(cors());
-app.use(morgan("combined"));
-
-/**
- * Call routes
- */
-app.use(config.apiRoot, require("./routers"));
-
-/**
- * Testing call api
- */
-app.use("/api/v1/version", (req, res) => {
-  const packageFile = require("./../package.json");
-  res.json({
-    version: packageFile.version
+  /**
+   * Testing call api
+   */
+  app.use("/api/v1/version", (req, res) => {
+    const packageFile = require("./../package.json");
+    res.json({
+      version: packageFile.version
+    });
   });
-});
+};
 
-// [4] Starting server
-app.listen(config.PORT, () => {
-  logger.info(`%s: ready ${MODULE_ID}. listening on PORT ${config.PORT}`);
-});
+try {
+  /**
+   * [3] adding middleware
+   * adding Helmet to enhance your API's security
+   * using bodyParser to parse JSON bodies into JS objects
+   * enabling CORS for all requests
+   * enabling morgan to log HTTP requests
+   */
+  app.enable("trust proxy");
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(
+    helmet({
+      noCache: true
+    })
+  );
+  app.use(bodyParser.json());
+  app.use(cors());
+  app.use(morgan("combined"));
+
+  // [4] Starting server
+  app.listen(config.PORT, async () => {
+    /**
+     * [5] Connect to mongoDB
+     * connect to db
+     */
+
+    try {
+      await new MongoConnector(
+        config.dbHost,
+        config.dbUser,
+        config.dbPass
+      ).connect();
+      logger.info(`%s: ready ${MODULE_ID}. connect db successfully!`);
+    } catch (error) {
+      logger.error(
+        `%s: ready ${MODULE_ID}. An error occurred while connecting to DB!`
+      );
+      throw new Error(err);
+    }
+
+    logger.info(`%s: ready ${MODULE_ID}. listening on PORT ${config.PORT}`);
+
+    appRouting();
+  });
+} catch (exception) {
+  logger.error(`%s: API Cannot Start. ${exception.message}`);
+}
 
 module.exports = app;
