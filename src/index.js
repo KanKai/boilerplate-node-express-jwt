@@ -6,13 +6,33 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import mongoose from "mongoose";
 import config from "./configs";
 import logger from "./utils/logger";
+import { MongoConnector } from "./helpers/mongoConnector";
 
 logger.info(`%s: initializing ${MODULE_ID}`);
 
 // [2] defining the express app
 const app = express();
+
+/**
+ * [5] Connect to mongoDB
+ * set mongoose default promise
+ * connect to db
+ */
+mongoose.Promise = global.Promise;
+new MongoConnector(config.dbHost, config.dbUser, config.dbPass).connect().then(
+  _ => {
+    logger.info(`%s: ready ${MODULE_ID}. connect db successfully!`);
+  },
+  err => {
+    logger.info(
+      `%s: ready ${MODULE_ID}. An error occurred while connecting to DB!`
+    );
+    throw new Error(err);
+  }
+);
 
 /**
  * [3] adding middleware
