@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 
+// set mongoose promise
+mongoose.Promise = Promise;
+
 export class MongoConnector {
   /**
    * MongoConnector constructor
