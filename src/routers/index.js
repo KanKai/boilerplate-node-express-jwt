@@ -1,13 +1,17 @@
 import express from "express";
+import auth from "./../middleware/authMiddleware";
 
 const route = express.Router();
 
 /**
  * no protect route
  */
-route.use("ping", require("./ping/v1"));
+route.use("/ping", require("./ping"));
 route.use("/auth", require("./auth"));
 
-route.use("/users", require("./user"));
+/**
+ * protect route
+ */
+route.use("/users", [auth, require("./user")]);
 
 module.exports = route;

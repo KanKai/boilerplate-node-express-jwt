@@ -49,5 +49,5 @@ module.exports = {
       logger.info(`%s: error register ${MODULE_ID} $ ${exception.message}`);
       InternalServerErrorResponse(res, exception.message);
     }
-  }
+  },
 };

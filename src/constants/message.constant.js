@@ -7,6 +7,8 @@ module.exports = {
   GET_DETAIL_SUCCESS: "Successfully get detail {args}!",
   SUCCESS_VALIDATE: "Successfully validated!",
   LOGIN_SUCCESS: "Successfully logged in!",
+  LOGOUT_SUCCESS: "Successfully logout!",
+  LOGOUT_ALL_SUCCESS: "Successfully logout all device!",
   CANNOT_FIND_DATA: "Couldn't find any data!",
   INVALID_USER_OR_PASSWORD: "Invalid username or password!",
   INVALID_EMAIL: "Invalid Email address",
