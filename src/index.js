@@ -1,11 +1,12 @@
 const MODULE_ID = "app:main";
 
-// [1] importing the dependencies
+// [1] importing the dependencies or others
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import config from "./configs";
 
 // [2] defining the express app
 const app = express();
@@ -32,8 +33,8 @@ app.get("/test", (req, res) => {
 });
 
 // [4] Starting server
-app.listen(3001, () => {
-  console.log("listening on port 3001");
+app.listen(config.PORT, () => {
+  console.log(`listening on port ${config.PORT}`);
 });
 
 module.exports = app;
