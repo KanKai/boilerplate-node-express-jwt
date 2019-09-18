@@ -70,7 +70,7 @@ try {
       logger.error(
         `%s: ready ${MODULE_ID}. An error occurred while connecting to DB!`
       );
-      throw new Error(err);
+      throw new Error(error);
     }
 
     logger.info(`%s: ready ${MODULE_ID}. listening on PORT ${config.PORT}`);

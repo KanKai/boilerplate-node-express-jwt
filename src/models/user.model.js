@@ -4,6 +4,7 @@ import { UnauthorizedException } from "./../exceptions/unauthorizedException";
 import message from "./../constants/message.constant";
 import { CryptoGenerator } from "./../helpers/cryptoGenerator";
 import { TokenGenerator } from "./../helpers/tokenGenerator";
+import role from "./../constants/role.constant";
 
 /**
  * Defining user schema
@@ -42,9 +43,8 @@ const model = new mongoose.Schema({
     }
   ],
   role: {
-    type: String,
-    enum: ["admin", "user"],
-    required: true
+    type: Number,
+    default: role.userRoles.user
   },
   createdAt: {
     type: Date,

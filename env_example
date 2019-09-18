@@ -1,0 +1,10 @@
+ENV = development
+DB_HOST = mongodb://127.0.0.1:2277/boilerplate-node-express-jwt
+USERNAME = <username>
+PASSWORD = <password>
+JWT_SECRET = &@$!pleasechange!$@&
+JWT_EXPIRES = 15m
+PORT = 3000
+SALT = &@$!pleasechange!$@&
+KEY_LEN = 32
+DIGEST = sha512
