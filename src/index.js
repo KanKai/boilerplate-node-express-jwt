@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-import config from "./configs";
+import config from "./config";
 import logger from "./utils/logger";
 import { MongoConnector } from "./database/mongoConnector";
 
@@ -29,7 +29,7 @@ const app = express();
     ).connect();
     logger.info(`%s: ready ${MODULE_ID}. connect db successfully!`);
   } catch (error) {
-    logger.info(
+    logger.error(
       `%s: ready ${MODULE_ID}. An error occurred while connecting to DB!`
     );
     throw new Error(err);
@@ -43,10 +43,17 @@ const app = express();
  * enabling CORS for all requests
  * enabling morgan to log HTTP requests
  */
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("combined"));
+
+/**
+ * Call routes
+ */
+app.use(config.apiRoot, require("./routers"));
 
 /**
  * Testing call api

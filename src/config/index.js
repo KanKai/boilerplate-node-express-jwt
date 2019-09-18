@@ -7,6 +7,7 @@ const API_ROOT = "/api";
 const env = process.env["ENV"] || "development";
 
 module.exports = {
+  apiRoot: API_ROOT,
   ENV: env,
   LOG_LEVEL: env === "development" ? "debug" : "info",
   PORT: process.env["PORT"] || 8080,

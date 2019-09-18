@@ -1,5 +1,5 @@
 import { createLogger, format, transports } from "winston";
-import config from "./../configs";
+import config from "../config";
 import fs from "fs";
 import path from "path";
 
