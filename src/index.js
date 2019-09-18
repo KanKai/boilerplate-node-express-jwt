@@ -58,9 +58,10 @@ app.use(config.apiRoot, require("./routers"));
 /**
  * Testing call api
  */
-app.get("/test", (req, res) => {
+app.use("/api/v1/version", (req, res) => {
+  const packageFile = require("./../package.json");
   res.json({
-    status: `Hello World API's`
+    version: packageFile.version
   });
 });
 
