@@ -16,9 +16,8 @@ export class TokenGenerator {
    * @returns {any}
    */
   generate() {
-    console.log("config.JWT_EXPIRES -> ", config.JWT_EXPIRES);
-    return jwt.sign(this._data, config.JWT_SECRET, {
-      expiresIn: config.JWT_EXPIRES // token จะหมดอายุใน 200 นาที
+    return jwt.sign(this._data, config.jwtSecret, {
+      expiresIn: config.jwtExpires // token จะหมดอายุใน 200 นาที
     });
   }
 }

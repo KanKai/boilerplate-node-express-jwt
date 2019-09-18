@@ -16,10 +16,10 @@ export class CryptoGenerator {
   async cryptoSync() {
     const hashPassword = await pbkdf2.pbkdf2Sync(
       this._password,
-      config.SALT,
+      config.salt,
       1,
-      parseInt(config.KEY_LEN),
-      config.DIGEST
+      parseInt(config.keyLen),
+      config.digest
     );
     return hashPassword.toString("hex");
   }
@@ -27,10 +27,10 @@ export class CryptoGenerator {
   async cryptoCompareSync() {
     let hashPassword = await pbkdf2.pbkdf2Sync(
       this._password,
-      config.SALT,
+      config.salt,
       1,
-      parseInt(config.KEY_LEN),
-      config.DIGEST
+      parseInt(config.keyLen),
+      config.digest
     );
     hashPassword = hashPassword.toString("hex");
     return isJS.equal(hashPassword, this._hash);

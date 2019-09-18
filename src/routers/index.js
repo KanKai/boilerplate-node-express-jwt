@@ -2,6 +2,12 @@ import express from "express";
 
 const route = express.Router();
 
-route.use('/v1/ping', require('./ping/v1'))
+/**
+ * no protect route
+ */
+route.use("ping", require("./ping/v1"));
+route.use("/auth", require("./auth"));
+
+route.use("/users", require("./user"));
 
 module.exports = route;
