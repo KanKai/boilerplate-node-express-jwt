@@ -21,7 +21,8 @@
     "pbkdf2": "^3.0.17",
     "saslprep": "^1.0.3",
     "validator": "^11.1.0",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

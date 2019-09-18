@@ -7,6 +7,9 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import config from "./configs";
+import logger from "./utils/logger";
+
+logger.info(`%s: initializing ${MODULE_ID}`);
 
 // [2] defining the express app
 const app = express();
@@ -28,13 +31,13 @@ app.use(morgan("combined"));
  */
 app.get("/test", (req, res) => {
   res.json({
-    status: "Hello World API's"
+    status: `Hello World API's`
   });
 });
 
 // [4] Starting server
 app.listen(config.PORT, () => {
-  console.log(`listening on port ${config.PORT}`);
+  logger.info(`%s: ready ${MODULE_ID}. listening on PORT ${config.PORT}`);
 });
 
 module.exports = app;

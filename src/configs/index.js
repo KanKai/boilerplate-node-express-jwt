@@ -4,9 +4,11 @@ require("dotenv").config();
  * สร้าง prefix route paths.
  */
 const API_ROOT = "/api";
+const env = process.env["ENV"] || "development";
 
 module.exports = {
-  LOG_LEVEL: process.env["LOG_LEVEL"] || "info",
+  ENV: env,
+  LOG_LEVEL: env === "development" ? "debug" : "info",
   PORT: process.env["PORT"] || 8080,
 
   // key สำหรับ สร้าง/ยืนยัน jwt
