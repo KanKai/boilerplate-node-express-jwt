@@ -19,7 +19,7 @@ cd boilerplate-node-express-jwt && npm install
 
 ### Run the server
 ```
-npm start
+npm start 
 ```
 
 ## APIs
