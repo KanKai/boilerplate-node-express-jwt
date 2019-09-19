@@ -52,7 +52,7 @@ npm start
             "createdAt": "2019-09-19T03:39:40.306Z",
             "updatedAt": "2019-09-19T03:39:40.306Z",
             "_id": "5d82f91b174a4f0e2ebb5b0d",
-            "email": "jeerawat@addtechhub.com",
+            "email": "xxxx@mail.com",
             "tokens": [
                 {
                     "_id": "5d82f91b174a4f0e2ebb5b0e",
