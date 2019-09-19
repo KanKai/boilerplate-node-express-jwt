@@ -66,7 +66,36 @@ npm start
 }
 ```
 #### Me
-`GET /api/users/me` 
+`GET /api/users/me`
+```javascript
+{
+    "success": true,
+    "error_code": null,
+    "message": "Successfully get detail user!",
+    "data": {
+        "_id": "5d82f91b174a4f0e2ebb5b0d",
+        "role": 2,
+        "createdAt": "2019-09-19T03:39:40.306Z",
+        "updatedAt": "2019-09-19T03:39:40.306Z",
+        "email": "xxxx@mail.com",
+        "profile": {
+            "firstName": "Jeerawat",
+            "lastName": "Keawsawat"
+        },
+        "tokens": [
+            {
+                "_id": "5d82f91b174a4f0e2ebb5b0e",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDgyZjkxYjE3NGE0ZjBlMmViYjViMGQiLCJlbWFpbCI6ImplZXJhd2F0QGFkZHRlY2hodWIuY29tIiwicm9sZSI6MiwiaWF0IjoxNTY4ODY0NTM5LCJleHAiOjE1Njg4NjU0Mzl9.us9LppDJEmeEy4x8zKHkhR6Td-jBDn9iZT48yOPLgF0"
+            },
+            {
+                "_id": "5d82fb1c1a7b1812e4d66788",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDgyZjkxYjE3NGE0ZjBlMmViYjViMGQiLCJlbWFpbCI6ImplZXJhd2F0QGFkZHRlY2hodWIuY29tIiwicm9sZSI6MiwiaWF0IjoxNTY4ODY1MDUyLCJleHAiOjE1Njg4NjU5NTJ9.8IswMii5jb9codnrA19oNkorMPHmQALSAJVdicQ9-CQ"
+            }
+        ],
+        "__v": 2
+    }
+}
+```
 
 **Description**: checks the JWT. Token should be passed as Url-encoded query or `Authorization: Bearer xxx` header
 
