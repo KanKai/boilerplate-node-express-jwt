@@ -10,11 +10,6 @@ import role from "./../constants/role.constant";
  * Defining user schema
  */
 const model = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true
-  },
   email: {
     type: String,
     required: true,
@@ -31,8 +26,23 @@ const model = new mongoose.Schema({
     required: true,
     minlength: 7
   },
-  phone: {
-    type: String
+  profile: {
+    firstName: {
+      type: String,
+      trim: true
+    },
+    lastName: {
+      type: String,
+      trim: true
+    },
+    fullName: {
+      type: String,
+      trim: true
+    },
+    phone: {
+      type: String,
+      trim: true
+    }
   },
   tokens: [
     {
@@ -57,11 +67,12 @@ const model = new mongoose.Schema({
 });
 
 model.pre("save", async function(next) {
+  const user = this;
+  user.fullName = `${user.firstName} ${user.lastName}`;
+  if (!user.isModified("password")) return next();
   /**
    * เข้ารหัส password ก่อนทำการบันทึก model
    */
-  const user = this;
-  if (!user.isModified("password")) return next();
   user.password = await new CryptoGenerator(user.password).cryptoSync();
   next();
 });

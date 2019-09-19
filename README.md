@@ -45,25 +45,23 @@ npm start
 {
     "success": true,
     "error_code": null,
-    "message": "Successfully logged in!",
+    "message": "Successfully create new user",
     "data": {
-        "result": {
-            "createdAt": "2019-09-18T11:42:03.266Z",
-            "updatedAt": "2019-09-18T11:42:03.266Z",
-            "_id": "5d82182b9cc8d5d188eb8e51",
-            "name": "tester",
-            "email": "tester@mail.com",
-            "phone": "999999999",
-            "role": "user",
+        "user": {
+            "role": 2,
+            "createdAt": "2019-09-19T03:39:40.306Z",
+            "updatedAt": "2019-09-19T03:39:40.306Z",
+            "_id": "5d82f91b174a4f0e2ebb5b0d",
+            "email": "jeerawat@addtechhub.com",
             "tokens": [
                 {
-                    "_id": "5d826e97d2d299f168fb7764",
-                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDgyMTgyYjljYzhkNWQxODhlYjhlNTEiLCJlbWFpbCI6ImplZXJhd2F0QGFkZHRlY2hodWIuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTY4ODI5MDc5LCJleHAiOjE1Njg4Mjk5Nzl9.L_MPKYzyHv-z8noaAaWTZTkK6NTPh4vBe-OQf5jISLw"
+                    "_id": "5d82f91b174a4f0e2ebb5b0e",
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDgyZjkxYjE3NGE0ZjBlMmViYjViMGQiLCJlbWFpbCI6ImplZXJhd2F0QGFkZHRlY2hodWIuY29tIiwicm9sZSI6MiwiaWF0IjoxNTY4ODY0NTM5LCJleHAiOjE1Njg4NjU0Mzl9.us9LppDJEmeEy4x8zKHkhR6Td-jBDn9iZT48yOPLgF0"
                 }
             ],
-            "__v": 16
+            "__v": 1
         },
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDgyMTgyYjljYzhkNWQxODhlYjhlNTEiLCJlbWFpbCI6ImplZXJhd2F0QGFkZHRlY2hodWIuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTY4ODI5MDc5LCJleHAiOjE1Njg4Mjk5Nzl9.L_MPKYzyHv-z8noaAaWTZTkK6NTPh4vBe-OQf5jISLw"
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDgyZjkxYjE3NGE0ZjBlMmViYjViMGQiLCJlbWFpbCI6ImplZXJhd2F0QGFkZHRlY2hodWIuY29tIiwicm9sZSI6MiwiaWF0IjoxNTY4ODY0NTM5LCJleHAiOjE1Njg4NjU0Mzl9.us9LppDJEmeEy4x8zKHkhR6Td-jBDn9iZT48yOPLgF0"
     }
 }
 ```
