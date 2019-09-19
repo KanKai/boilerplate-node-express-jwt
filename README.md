@@ -105,6 +105,6 @@ npm start
 **Description**: checks the JWT. Token should be passed as Url-encoded query or `Authorization: Bearer xxx` header
 
 #### Logout all devices
-`POST /api/users/me/logout`
+`POST /api/users/me/logoutall`
 
 **Description**: checks the JWT. Token should be passed as Url-encoded query or `Authorization: Bearer xxx` header
