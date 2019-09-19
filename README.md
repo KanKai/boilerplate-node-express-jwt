@@ -27,7 +27,6 @@ npm start
 `POST /api/auth/register`
 ```
 {
-    name,
     email,
     password
 }
