@@ -1,10 +1,9 @@
-ENV = development
-DB_HOST = mongodb://127.0.0.1:2277/boilerplate-node-express-jwt
+DB_HOST = mongodb://127.0.0.1:2277/nodejs-restful-api-restify
 USERNAME = <username>
 PASSWORD = <password>
 JWT_SECRET = &@$!pleasechange!$@&
 JWT_EXPIRES = 15m
-PORT = 3000
+PORT = 3002
 SALT = &@$!pleasechange!$@&
 KEY_LEN = 32
 DIGEST = sha512

@@ -14,7 +14,8 @@ Express.js, Mongoose, ES6 Syntax is used in this project.
 ```
 cd boilerplate-node-express-jwt && npm install
 ```
-2) Rename `env_example` to `.env`
+2) Rename `env_development_example` to `.env.development`
+2) Rename `env_production_example` to `.env.production`
 
 ### Run the server
 ```
