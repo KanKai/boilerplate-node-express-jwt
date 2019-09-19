@@ -17,7 +17,11 @@ module.exports = {
     logger.info(`%s: request login ${MODULE_ID}`);
     try {
       const { email, password } = req.body;
-      const result = await new LoginController(email, password).login();
+      const result = await new LoginController(
+        email,
+        password,
+        req.useragent
+      ).login();
       SuccessResponse(res, message.LOGIN_SUCCESS, result);
       logger.info(
         `%s: response login ${MODULE_ID} $ ${JSON.stringify(result)}`
@@ -49,5 +53,5 @@ module.exports = {
       logger.info(`%s: error register ${MODULE_ID} $ ${exception.message}`);
       InternalServerErrorResponse(res, exception.message);
     }
-  },
+  }
 };

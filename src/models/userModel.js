@@ -53,6 +53,12 @@ const model = new mongoose.Schema({
       loginDate: {
         type: Date,
         default: Date.now()
+      },
+      browser: {
+        type: String
+      },
+      platform: {
+        type: String
       }
     }
   ],
@@ -81,7 +87,7 @@ model.pre("save", async function(next) {
   next();
 });
 
-model.methods.generateAuthToken = async function() {
+model.methods.generateAuthToken = async function(platform = '', browser = '') {
   /**
    * สร้าง auth token สำหรับ user
    */
@@ -91,7 +97,7 @@ model.methods.generateAuthToken = async function() {
     email: user.email,
     role: user.role
   }).generate();
-  user.tokens = user.tokens.concat({ token });
+  user.tokens = user.tokens.concat({ token, platform, browser  });
   await user.save();
   return token;
 };

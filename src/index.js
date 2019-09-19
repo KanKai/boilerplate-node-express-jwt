@@ -9,6 +9,7 @@ import morgan from "morgan";
 import config from "./config";
 import logger from "./utils/logger";
 import { MongoConnector } from "./database/mongoConnector";
+import useragent from "express-useragent";
 
 logger.info(`%s: initializing ${MODULE_ID}`);
 
@@ -25,6 +26,7 @@ const appRouting = () => {
    * Testing call api
    */
   app.use("/api/v1/version", async (req, res) => {
+    console.log(req.useragent);
     const packageFile = require("./../package.json");
     res.json({
       version: packageFile.version
@@ -51,6 +53,7 @@ try {
   app.use(bodyParser.json());
   app.use(cors());
   app.use(morgan("combined"));
+  app.use(useragent.express());
 
   // [4] Starting server
   app.listen(config.PORT, async () => {

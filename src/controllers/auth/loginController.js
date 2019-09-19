@@ -8,9 +8,10 @@ export class LoginController {
    * @param {String} email
    * @param {String} password
    */
-  constructor(email, password) {
+  constructor(email, password, useragent) {
     this._email = email;
     this._password = password;
+    this._useragent = useragent;
   }
 
   /**
@@ -29,7 +30,10 @@ export class LoginController {
         throw new UnauthorizedException(message.INVALID_USER_OR_PASSWORD);
       }
 
-      const token = await user.generateAuthToken();
+      const token = await user.generateAuthToken(
+        this._useragent.platform,
+        this._useragent.browser
+      );
       const result = user.removePasswordField();
       return { result, token };
     } catch (error) {
