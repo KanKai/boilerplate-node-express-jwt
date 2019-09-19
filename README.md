@@ -66,6 +66,16 @@ npm start
 }
 ```
 #### Me
-`GET /api/users/me` or `GET /api/users/me?token={token}`  
+`GET /api/users/me` 
 
-**Description**: checks the JWT. Token should be passed as Url-encoded query or `Authorization: Bearer` header
+**Description**: checks the JWT. Token should be passed as Url-encoded query or `Authorization: Bearer xxx` header
+
+#### Logout application
+`POST /api/users/me/logout`
+
+**Description**: checks the JWT. Token should be passed as Url-encoded query or `Authorization: Bearer xxx` header
+
+#### Logout all devices
+`POST /api/users/me/logout`
+
+**Description**: checks the JWT. Token should be passed as Url-encoded query or `Authorization: Bearer xxx` header
