@@ -108,3 +108,16 @@ npm start
 `POST /api/users/me/logoutall`
 
 **Description**: checks the JWT. Token should be passed as Url-encoded query or `Authorization: Bearer xxx` header
+
+#### Translate
+`GET /api/translate?keyword="สวัสดีครับ"`
+```javascript
+{
+    "success": true,
+    "error_code": null,
+    "message": "Successfully",
+    "data": {
+        "result": "\"Hello\""
+    }
+}
+```

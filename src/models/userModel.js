@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 import validator from "validator";
-import { UnauthorizedException } from "./../exceptions/unauthorizedException";
-import message from "./../constants/message.constant";
-import { CryptoGenerator } from "./../helpers/cryptoGenerator";
-import { TokenGenerator } from "./../helpers/tokenGenerator";
-import role from "./../constants/role.constant";
+import { UnauthorizedException } from "../exceptions/unauthorizedException";
+import message from "../constants/message.constant";
+import { CryptoGenerator } from "../helpers/cryptoGenerator";
+import { TokenGenerator } from "../helpers/tokenGenerator";
+import role from "../constants/role.constant";
 
 /**
  * Defining user schema
@@ -49,6 +49,10 @@ const model = new mongoose.Schema({
       token: {
         type: String,
         required: true
+      },
+      loginDate: {
+        type: Date,
+        default: Date.now()
       }
     }
   ],

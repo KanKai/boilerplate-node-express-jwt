@@ -25,6 +25,8 @@ module.exports = {
   dbHost: process.env["DB_HOST"],
   dbUser: process.env["USERNAME"],
   dbPass: process.env["PASSWORD"],
+  googleWebService:
+    "https://translate.googleapis.com/translate_a/single?client=gtx&sl={{form_lang}}&tl={{to_lang}}&dt=t&ie=UTF-8&oe=UTF-8&q={{sentences}}",
 
   // building route paths
   basePath: path => {

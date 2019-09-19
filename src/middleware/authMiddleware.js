@@ -3,9 +3,8 @@ const MODULE_ID = "app:authentication:middleware";
 import jwt from "jsonwebtoken";
 import config from "../config";
 import UnauthorizedResponse from "../responses/unauthorizedResponse";
-import InternalServerErrorResponse from "../responses/internalServerErrorResponse";
 import logger from "./../utils/logger";
-import UserModel from "../models/user.model";
+import UserModel from "../models/userModel";
 import message from "../constants/message.constant";
 import { UnauthorizedException } from "../exceptions/unauthorizedException";
 

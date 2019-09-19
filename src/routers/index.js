@@ -10,6 +10,7 @@ const route = express.Router();
  */
 route.use("/ping", [require("./ping")]);
 route.use("/auth", [require("./auth")]);
+route.use("/translate", [require("./translate")]);
 
 /**
  * protect route
