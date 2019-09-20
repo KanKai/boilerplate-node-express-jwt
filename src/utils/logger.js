@@ -19,10 +19,11 @@ if (!fs.existsSync(logDir)) {
  */
 const dailyRotateFileTransport = new transports.DailyRotateFile({
   filename: `${logDir}/%DATE%-results.log`,
-  datePattern: "YYYY-MM-DD"
+  datePattern: "YYYY-MM-DD",
+  zippedArchive: true,
+  maxSize: "20m",
+  maxFiles: "14d"
 });
-
-const filename = path.join(logDir, "result.log");
 
 const logger = createLogger({
   level: config.LOG_LEVEL,
@@ -31,7 +32,9 @@ const logger = createLogger({
     format.timestamp({
       format: "YYYY-MM-DD HH:mm:ss"
     }),
-    format.printf(info => `${info.timestamp} ${info.level} [${info.label}]: ${info.message}`)
+    format.printf(
+      info => `${info.timestamp} ${info.level} [${info.label}]: ${info.message}`
+    )
   ),
   transports: [
     new transports.Console({
