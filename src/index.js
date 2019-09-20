@@ -26,7 +26,6 @@ const appRouting = () => {
    * Testing call api
    */
   app.use("/api/v1/version", async (req, res) => {
-    console.log(req.useragent);
     const packageFile = require("./../package.json");
     res.json({
       version: packageFile.version

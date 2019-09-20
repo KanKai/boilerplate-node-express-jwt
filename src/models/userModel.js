@@ -42,6 +42,9 @@ const model = new mongoose.Schema({
     phone: {
       type: String,
       trim: true
+    },
+    imgPath: {
+      type: String
     }
   },
   tokens: [
@@ -87,7 +90,7 @@ model.pre("save", async function(next) {
   next();
 });
 
-model.methods.generateAuthToken = async function(platform = '', browser = '') {
+model.methods.generateAuthToken = async function(platform = "", browser = "") {
   /**
    * สร้าง auth token สำหรับ user
    */
@@ -97,7 +100,7 @@ model.methods.generateAuthToken = async function(platform = '', browser = '') {
     email: user.email,
     role: user.role
   }).generate();
-  user.tokens = user.tokens.concat({ token, platform, browser  });
+  user.tokens = user.tokens.concat({ token, platform, browser });
   await user.save();
   return token;
 };
