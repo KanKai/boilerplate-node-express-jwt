@@ -1,4 +1,3 @@
-import UnauthorizedException from "./../exceptions/unauthorizedException";
 import message from "./../constants/message.constant";
 import successResponse from "../responses/successResponse";
 

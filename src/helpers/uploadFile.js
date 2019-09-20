@@ -1,9 +1,8 @@
 import multer from "multer";
 import fs from "fs";
-import path from "path";
 import mime from "mime";
+import uuidV4 from "uuid/v4";
 
-const rootPath = path.join(path.dirname(require.main.filename));
 const multerStorage = multer.diskStorage({
   destination: function(req, file, cb) {
     const path = `${rootPath}/public/uploads/${req.imagesFolder}/`;
@@ -14,7 +13,10 @@ const multerStorage = multer.diskStorage({
     cb(null, path);
   },
   filename: function(req, file, cb) {
-    cb(null, `${file.fieldname}.${mime.getExtension(file.mimetype)}`);
+    cb(
+      null,
+      `${file.fieldname}-${uuidV4()}.${mime.getExtension(file.mimetype)}`
+    );
   }
 });
 

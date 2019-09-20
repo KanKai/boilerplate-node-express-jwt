@@ -10,8 +10,17 @@ import config from "./config";
 import logger from "./utils/logger";
 import { MongoConnector } from "./database/mongoConnector";
 import useragent from "express-useragent";
+import loggerMiddleware from "./middleware/loggerMiddleware";
+import {
+  preUploadProduct,
+  preUploadProfile
+} from "./middleware/preUploadMiddleware";
+import { UploadFileDisk } from "./helpers/uploadFile";
+import path from "path";
 
 logger.info(`%s: initializing ${MODULE_ID}`);
+
+global.rootPath = path.join(path.dirname(require.main.filename));
 
 // [2] defining the express app
 const app = express();
@@ -31,6 +40,30 @@ const appRouting = () => {
       version: packageFile.version
     });
   });
+
+  app.post(
+    "/api/v1/uploadProduct",
+    preUploadProduct,
+    UploadFileDisk.single("productImg"),
+    async (req, res) => {
+      const packageFile = require("./../package.json");
+      res.json({
+        version: packageFile.version
+      });
+    }
+  );
+
+  app.post(
+    "/api/v1/uploadProfile",
+    preUploadProfile,
+    UploadFileDisk.single("profileImg"),
+    async (req, res) => {
+      const packageFile = require("./../package.json");
+      res.json({
+        version: packageFile.version
+      });
+    }
+  );
 };
 
 try {
@@ -53,6 +86,7 @@ try {
   app.use(cors());
   app.use(morgan("combined"));
   app.use(useragent.express());
+  app.use(loggerMiddleware);
 
   // [4] Starting server
   app.listen(config.PORT, async () => {
