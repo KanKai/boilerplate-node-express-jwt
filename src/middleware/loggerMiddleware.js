@@ -1,20 +1,40 @@
 import logger from "./../utils/logger";
+import { Utils } from "../utils/utils";
 
 module.exports = (req, res, next) => {
-  logger.info(
-    `[REQUEST] method=${req.method} route=${
-      req.originalUrl
-    } platform=${req.useragent.browser} body=${JSON.stringify(req.body)}`
-  );
+  const oldWrite = res.write;
+  const oldEnd = res.end;
 
-  res.on("finish", () => {
+  const chunks = [];
+
+  res.write = (...restArgs) => {
+    chunks.push(Buffer.from(restArgs[0]));
+    oldWrite.apply(res, restArgs);
+  };
+
+  res.end = (...restArgs) => {
+    if (restArgs[0]) {
+      chunks.push(Buffer.from(restArgs[0]));
+    }
+
+    const body = Buffer.concat(chunks).toString("utf8");
+
     logger.info(
-      `[RESPONSE] method=${req.method} method=${req.originalUrl} [FINISHED]`
+      JSON.stringify({
+        time: new Date().toUTCString(),
+        fromIP: req.headers["x-forwarded-for"] || req.connection.remoteAddress,
+        method: req.method,
+        originalUri: req.originalUrl,
+        uri: req.url,
+        requestData: Utils.replaceSecretObj(req.body),
+        responseData: body,
+        referer: req.headers.referer || "",
+        ua: req.headers["user-agent"]
+      })
     );
-  });
 
-  res.on("close", () => {
-    log.error(`${req.method} ${req.originalUrl} [CLOSED]`);
-  });
+    oldEnd.apply(res, restArgs);
+  };
+
   next();
 };

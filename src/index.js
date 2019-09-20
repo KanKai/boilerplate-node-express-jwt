@@ -18,7 +18,7 @@ import {
 import { UploadFileDisk } from "./helpers/uploadFile";
 import path from "path";
 
-logger.info(`%s: initializing ${MODULE_ID}`);
+logger.info(JSON.stringify({ initial: { appModule: MODULE_ID } }));
 
 global.rootPath = path.join(path.dirname(require.main.filename));
 
@@ -101,20 +101,41 @@ try {
         config.dbUser,
         config.dbPass
       ).connect();
-      logger.info(`%s: ready ${MODULE_ID}. connect db successfully!`);
+      logger.info(
+        JSON.stringify({
+          connectDB: {
+            appModule: MODULE_ID,
+            status: "connect db successfully!"
+          }
+        })
+      );
     } catch (error) {
       logger.error(
-        `%s: ready ${MODULE_ID}. An error occurred while connecting to DB!`
+        JSON.stringify({ error: { appModule: MODULE_ID, message: error } })
       );
       throw new Error(error);
     }
 
-    logger.info(`%s: ready ${MODULE_ID}. listening on PORT ${config.PORT}`);
+    logger.info(
+      JSON.stringify({
+        initial: {
+          appModule: MODULE_ID,
+          message: `listening on PORT ${config.PORT}`
+        }
+      })
+    );
 
     appRouting();
   });
 } catch (exception) {
-  logger.error(`%s: API Cannot Start. ${exception.message}`);
+  logger.error(
+    JSON.stringify({
+      error: {
+        appModule: MODULE_ID,
+        message: `API Cannot Start. ${exception.message}`
+      }
+    })
+  );
 }
 
 module.exports = app;

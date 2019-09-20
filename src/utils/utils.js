@@ -11,4 +11,21 @@ export class Utils {
       return mapObj[matched];
     });
   }
+
+  /**
+   * Replace Object to ****
+   *
+   * @param {Object} reqBody
+   */
+  static replaceSecretObj(reqBody) {
+    const selectField = ["password", "token"];
+
+    for (let key of selectField) {
+      if (reqBody.hasOwnProperty(key) && key === "password") {
+        reqBody[key] = "*****";
+      }
+    }
+
+    return reqBody;
+  }
 }

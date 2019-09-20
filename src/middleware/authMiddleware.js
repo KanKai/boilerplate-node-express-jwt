@@ -9,7 +9,6 @@ import message from "../constants/message.constant";
 import { UnauthorizedException } from "../exceptions/unauthorizedException";
 
 const AuthMiddleware = async (req, res, next) => {
-  logger.info(`%s: request auth ${MODULE_ID}`);
   try {
     const token = req.header("Authorization").replace("Bearer ", "");
     const data = jwt.verify(token, config.jwtSecret);
@@ -26,7 +25,9 @@ const AuthMiddleware = async (req, res, next) => {
     req.token = token;
     next();
   } catch (exception) {
-    logger.info(`%s: error auth ${MODULE_ID} $ ${exception.message}`);
+    logger.warn(
+      JSON.stringify({ error: { appModule: MODULE_ID, message: exception } })
+    );
     UnauthorizedResponse(res, exception.message);
   }
 };

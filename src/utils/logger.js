@@ -53,5 +53,3 @@ const logger = createLogger({
 });
 
 module.exports = logger;
-logger.debug("util:logger: initialized.");
-logger.info(`util:logger: ENV LOG_LEVEL = ${config.LOG_LEVEL}`);

@@ -9,7 +9,6 @@ import { GetTranslateController } from "./../../controllers/translate/getTransla
 
 module.exports = {
   translate: async (req, res, next) => {
-    logger.info(`%s: request ${MODULE_ID}`);
     try {
       const result = await new GetTranslateController().get(
         req.query.keyword,
@@ -17,9 +16,15 @@ module.exports = {
         req.query.to_lang
       );
       SuccessResponse(res, message.SUCCESSFULLY, result);
-      logger.info(`%s: response ${MODULE_ID} | ${result}`);
-    } catch (exceptions) {
-      logger.info(`%s: error ${MODULE_ID} | ${exception.message}`);
+    } catch (exception) {
+      logger.error(
+        JSON.stringify({
+          error: {
+            appModule: MODULE_ID,
+            message: exception.message
+          }
+        })
+      );
       if (exception instanceof NotFoundException)
         NotFoundResponse(res, exception.message);
       else InternalServerErrorResponse(res, exception.message);
