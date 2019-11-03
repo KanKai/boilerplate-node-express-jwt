@@ -20,4 +20,10 @@ route.use("/users", [
   allowOnly(roleConfig.accessLevel.user, require("./user"))
 ]);
 
+route.use("/images", [
+  auth,
+  allowOnly(roleConfig.accessLevel.guest),
+  require("./image")
+]);
+
 module.exports = route;

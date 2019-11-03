@@ -26,7 +26,9 @@ module.exports = (req, res, next) => {
         method: req.method,
         originalUri: req.originalUrl,
         uri: req.url,
-        requestData: Utils.replaceSecretObj(req.body),
+        requestData: Utils.ignoreImageRoute(req.originalUrl)
+          ? {}
+          : Utils.replaceSecretObj(req.body),
         responseData: body,
         referer: req.headers.referer || "",
         ua: req.headers["user-agent"]

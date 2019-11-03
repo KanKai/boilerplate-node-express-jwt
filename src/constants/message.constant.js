@@ -14,5 +14,6 @@ module.exports = {
   INVALID_EMAIL: "Invalid Email address",
   TOKEN_EXPIRED: "Token expired!",
   INVALID_TOKEN: "Invalid token!",
-  INVALID_LOGIN_CREDENTIAL: "Invalid login credentials"
+  INVALID_LOGIN_CREDENTIAL: "Invalid login credentials",
+  DATA_NOT_FOUND: "Not found."
 };

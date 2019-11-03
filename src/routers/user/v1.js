@@ -35,6 +35,30 @@ module.exports = {
   },
 
   /**
+   * Update user profile
+   */
+  update: async (req, res, next) => {
+    try {
+      console.log("req.user -> ", req.user);
+      console.log("req -> ", req);
+      res.json("success");
+    } catch (exception) {
+      console.log("exception -> ", exception);
+      logger.error(
+        JSON.stringify({
+          error: {
+            appModule: MODULE_ID,
+            message: exception.message
+          }
+        })
+      );
+      if (exception instanceof NotFoundException)
+        NotFoundResponse(res, exception.message);
+      else InternalServerErrorResponse(res, exception.message);
+    }
+  },
+
+  /**
    * User logout
    */
   logout: async (req, res, next) => {

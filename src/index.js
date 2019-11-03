@@ -40,30 +40,6 @@ const appRouting = () => {
       version: packageFile.version
     });
   });
-
-  app.post(
-    "/api/v1/uploadProduct",
-    preUploadProduct,
-    UploadFileDisk.single("productImg"),
-    async (req, res) => {
-      const packageFile = require("./../package.json");
-      res.json({
-        version: packageFile.version
-      });
-    }
-  );
-
-  app.post(
-    "/api/v1/uploadProfile",
-    preUploadProfile,
-    UploadFileDisk.single("profileImg"),
-    async (req, res) => {
-      const packageFile = require("./../package.json");
-      res.json({
-        version: packageFile.version
-      });
-    }
-  );
 };
 
 try {
