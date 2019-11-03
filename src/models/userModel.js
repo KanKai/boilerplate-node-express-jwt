@@ -5,6 +5,7 @@ import message from "../constants/message.constant";
 import { CryptoGenerator } from "../helpers/cryptoGenerator";
 import { TokenGenerator } from "../helpers/tokenGenerator";
 import role from "../constants/role.constant";
+import { Utils } from "../utils/utils";
 
 /**
  * Defining user schema
@@ -25,6 +26,9 @@ const model = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 7
+  },
+  salt: {
+    type: String
   },
   profile: {
     firstName: {
@@ -86,7 +90,10 @@ model.pre("save", async function(next) {
   /**
    * เข้ารหัส password ก่อนทำการบันทึก model
    */
-  user.password = await new CryptoGenerator(user.password).cryptoSync();
+  const salt = Utils.randomBytes();
+  console.log("salt -> ", salt);
+  user.salt = salt;
+  user.password = await new CryptoGenerator(user.password, salt).cryptoSync();
   next();
 });
 
@@ -105,9 +112,10 @@ model.methods.generateAuthToken = async function(platform = "", browser = "") {
   return token;
 };
 
-model.methods.removePasswordField = function() {
-  const data = this.toObject();
+model.methods.removeFieldSecret = function() {
+  let data = this.toObject();
   delete data.password;
+  delete data.salt;
   return data;
 };
 
@@ -123,6 +131,7 @@ model.statics.findByCredentials = async (email, password) => {
 
   const isPasswordMatch = await new CryptoGenerator(
     password,
+    user.salt,
     user.password
   ).cryptoCompareSync();
 

@@ -19,7 +19,6 @@ module.exports = {
   // key สำหรับ สร้าง/ยืนยัน jwt
   jwtSecret: process.env["JWT_SECRET"],
   jwtExpires: process.env["JWT_EXPIRES"],
-  salt: process.env["SALT"],
   keyLen: process.env["KEY_LEN"],
   digest: process.env["DIGEST"],
   dbHost: process.env["DB_HOST"],

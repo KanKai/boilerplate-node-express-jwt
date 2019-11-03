@@ -1,3 +1,4 @@
+import crypto from "crypto";
 export class Utils {
   /**
    *
@@ -36,10 +37,18 @@ export class Utils {
 
   /**
    * Ignore Images paths
-   * 
-   * @param {Array} routes 
+   *
+   * @param {Array} routes
    */
   static ignoreImageRoute(routes = [], path) {
-    return routes.indexOf(path) < 0 ? true : false
+    return routes.indexOf(path) < 0 ? true : false;
+  }
+
+  /**
+   * Random Bytes Base64
+   */
+  static randomBytes() {
+    const buf = crypto.randomBytes(16).toString("base64");
+    return buf;
   }
 }

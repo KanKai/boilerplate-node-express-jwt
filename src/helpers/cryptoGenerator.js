@@ -8,15 +8,16 @@ export class CryptoGenerator {
    * @param {String} password
    * @param {String} hash
    */
-  constructor(password, hash = "") {
+  constructor(password, salt, hash = "") {
     this._password = password;
+    this._salt = salt;
     this._hash = hash;
   }
 
   async cryptoSync() {
     const hashPassword = await pbkdf2.pbkdf2Sync(
       this._password,
-      config.salt,
+      this._salt,
       1,
       parseInt(config.keyLen),
       config.digest
@@ -27,7 +28,7 @@ export class CryptoGenerator {
   async cryptoCompareSync() {
     let hashPassword = await pbkdf2.pbkdf2Sync(
       this._password,
-      config.salt,
+      this._salt,
       1,
       parseInt(config.keyLen),
       config.digest

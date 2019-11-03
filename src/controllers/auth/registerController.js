@@ -18,7 +18,7 @@ export class RegisterController {
       let user = new UserModel(this._data);
       await user.save();
       const token = await user.generateAuthToken();
-      user = await user.removePasswordField();
+      user = await user.removeFieldSecret();
       return { user, token };
     } catch (error) {
       throw error;

@@ -34,7 +34,7 @@ export class LoginController {
         this._useragent.platform,
         this._useragent.browser
       );
-      const result = user.removePasswordField();
+      const result = user.removeFieldSecret();
       result['token'] = token
       return result;
     } catch (error) {
