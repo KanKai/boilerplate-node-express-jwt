@@ -29,7 +29,7 @@
     "request": "^2.88.0",
     "saslprep": "^1.0.3",
     "uuid": "^3.3.3",
-    "validator": "^11.1.0",
+    "validator": "^13.7.0",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^4.1.0"
   },
